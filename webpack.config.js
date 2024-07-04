@@ -1,15 +1,15 @@
+// webpack.config.js
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const rendererConfig = {
+module.exports = {
   entry: './src/renderer.tsx',
-  target: 'electron-renderer',
   mode: isProduction ? 'production' : 'development',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'renderer.js'
+    filename: 'bundle.js'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.css'],
@@ -52,30 +52,3 @@ const rendererConfig = {
     port: 9999
   }
 };
-
-const mainConfig = {
-  entry: './src/main.ts',
-  target: 'electron-main',
-  mode: isProduction ? 'production' : 'development',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js'
-  },
-  resolve: {
-    extensions: ['.ts', '.js']
-  },
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
-      }
-    ]
-  },
-  externals: {
-    fsevents: "require('fsevents')"
-  }
-};
-
-module.exports = [rendererConfig, mainConfig];

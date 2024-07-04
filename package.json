@@ -1,40 +1,10 @@
 {
   "name": "saar-playback",
   "version": "1.0.0",
-  "main": "dist/main.js",
   "scripts": {
-    "start": "npm run build:prod && electron .",
-    "build:dev": "NODE_ENV=development webpack --config webpack.config.js",
-    "build:prod": "NODE_ENV=production webpack --config webpack.config.js",
-    "watch": "webpack --watch --config webpack.config.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "NODE_ENV=development concurrently \"npm run watch\" \"webpack serve --config webpack.config.js\" \"electron .\"",
-    "pack": "npm run build && electron-builder --dir",
-    "dist": "npm run build && electron-builder",
-    "dist:mac": "npm run build:prod && electron-builder --mac",
-    "dist:win": "npm run build:prod && electron-builder --win --x64"
-  },
-  "build": {
-    "appId": "com.emushrif.saarplayback",
-    "productName": "Saar Playback",
-    "files": [
-      "dist/**/*",
-      "package.json"
-    ],
-    "mac": {
-      "category": "public.app-category.utilities"
-    },
-    "win": {
-      "target": [
-        {
-          "target": "nsis",
-          "arch": [
-            "x64",
-            "ia32"
-          ]
-        }
-      ]
-    }
+    "start": "webpack serve --open --config webpack.config.js",
+    "build": "NODE_ENV=production webpack --config webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -45,12 +15,7 @@
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.15.0",
     "@typescript-eslint/parser": "^7.15.0",
-    "concurrently": "^8.2.2",
     "css-loader": "^7.1.2",
-    "electron": "^31.1.0",
-    "electron-builder": "^24.13.3",
-    "electron-devtools-installer": "^3.2.0",
-    "electron-reload": "^2.0.0-alpha.1",
     "eslint": "^8.57.0",
     "html-webpack-plugin": "^5.6.0",
     "postcss": "^8.4.39",
@@ -58,8 +23,6 @@
     "postcss-preset-env": "^9.5.15",
     "postcss-preset-mantine": "^1.15.0",
     "postcss-simple-vars": "^7.0.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
     "style-loader": "^4.0.0",
     "ts-loader": "^9.5.1",
     "typescript": "^5.5.3",
@@ -78,11 +41,10 @@
     "maplibre-gl": "^4.5.0",
     "ml-hclust": "^3.1.0",
     "papaparse": "^5.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-redux": "^9.1.2",
     "redux": "^5.0.1",
     "uuid": "^10.0.0"
-  },
-  "optionalDependencies": {
-    "fsevents": "^2.3.2"
   }
 }
